@@ -24,11 +24,15 @@ class MainActivity : AppCompatActivity() {
         numeroAdivinhar = random.nextInt(10) + 1
         jogo++
         tentativas = 0
-        atualizaJogoTentativas()
+        atualizaTentativas()
+        atualizaJogo()
     }
 
-    private fun atualizaJogoTentativas() {
+    private fun atualizaJogo() {
         findViewById<TextView>(R.id.textViewJogo).text = getString(R.string.jogo) + jogo
+
+    }
+    private fun atualizaTentativas() {
         findViewById<TextView>(R.id.textViewTentativas).text = getString(R.string.tentativa) + tentativas
     }
 
@@ -36,15 +40,26 @@ class MainActivity : AppCompatActivity() {
         val editTextNumero = findViewById<EditText>(R.id.EditTextNumero)
         val numero = editTextNumero.text.toString().toIntOrNull()
         when (numero) {
-            in 1..10 -> verificaAcertou()
+            in 1..10 -> verificaAcertou(numero!!)//let para verificar que nao é nulo e sim inteiro
             null -> editTextNumero.error = getString(R.string.numero_invalido)
             else -> editTextNumero.error = getString(R.string.numero_1e10)
 
         }
     }
 
-    private fun verificaAcertou() {
-        TODO("Not yet implemented")
+    private fun verificaAcertou(numero: Int) {
+        val textViewAjuda = findViewById<TextView>(R.id.textViewAjuda)
+
+        textViewAjuda.text =
+                if(numero == numeroAdivinhar){
+                    "Parabéns, acertou!!"
+                }else if (numeroAdivinhar > numero){
+                    "O número que estou a pensar é maior"
+                }else{
+                    "O número que estou a pensar é menor"
+                }
+        tentativas++
+        atualizaTentativas()
     }
 
 
