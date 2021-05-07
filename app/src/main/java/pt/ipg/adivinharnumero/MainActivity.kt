@@ -50,17 +50,18 @@ class MainActivity : AppCompatActivity() {
     private fun verificaAcertou(numero: Int) {
         val textViewAjuda = findViewById<TextView>(R.id.textViewAjuda)
 
-        textViewAjuda.text =
-                if(numero == numeroAdivinhar){
-                    "Parabéns, acertou!!"
-                }else if (numeroAdivinhar > numero){
-                    "O número que estou a pensar é maior"
-                }else{
-                    "O número que estou a pensar é menor"
-                }
+        if(numero == numeroAdivinhar){
+            textViewAjuda.text = "Parabéns, acertou!!"
+        }else if (numeroAdivinhar > numero){
+            textViewAjuda.text ="O número que estou a pensar é maior"
+        }else{
+            textViewAjuda.text ="O número que estou a pensar é menor"
+        }
         tentativas++
         atualizaTentativas()
     }
-
+    private fun perguntaNovamente(){
+        //colocar alert dialog se quer jogar novamente
+    }
 
 }
