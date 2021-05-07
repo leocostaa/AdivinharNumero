@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">AdivinharNumero</string>
+    <string name="questao">Qual o número que estou a pensar (entre 1 e 10) ?</string>
+    <string name="numero">Número</string>
+    <string name="adivinha">Adivinha</string>
+    <string name="jogo">Jogo:</string>
+    <string name="tentativa">Tentativas:</string>
+    <string name="numero_invalido">Introduza um número (entre 1 e 10)</string>
+    <string name="numero_1e10">O número deve estar entre 1 e 10</string>
 </resources>
