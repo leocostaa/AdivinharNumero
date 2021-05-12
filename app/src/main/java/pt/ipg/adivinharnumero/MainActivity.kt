@@ -3,6 +3,7 @@ package pt.ipg.adivinharnumero
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -18,8 +19,25 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        if ( savedInstanceState == null){
+            novoJogo()
+        }else{
+            numeroAdivinhar = savedInstanceState.getInt(NUMERO_ADIVINHAR)
+            jogo = savedInstanceState.getInt(JOGO)
+            tentativas = savedInstanceState.getInt(TENTATIVAS)
 
+            atualizaTentativas()
+            atualizaJogo()
+            findViewById<TextView>(R.id.textViewAjuda).text = ""
+        }
         novoJogo()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(NUMERO_ADIVINHAR,numeroAdivinhar)
+        outState.putInt(JOGO,jogo)
+        outState.putInt(TENTATIVAS,tentativas)
     }
 
     private fun novoJogo(){
@@ -78,6 +96,11 @@ class MainActivity : AppCompatActivity() {
                 DialogInterface.OnClickListener { dialog, which -> finish() }
         )
         alertDialogBuilder.show()
+    }
+    companion object{
+        const val NUMERO_ADIVINHAR = "NUM_ADIVINHAR"
+        const val JOGO = "JOGO"
+        const val TENTATIVAS = "TENTATIVAS"
     }
 
 }
