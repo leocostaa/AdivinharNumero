@@ -1,10 +1,12 @@
 package pt.ipg.adivinharnumero
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -51,17 +53,31 @@ class MainActivity : AppCompatActivity() {
         val textViewAjuda = findViewById<TextView>(R.id.textViewAjuda)
 
         if(numero == numeroAdivinhar){
-            textViewAjuda.text = "Parabéns, acertou!!"
+            textViewAjuda.text = getString(R.string.acertou)
+            perguntaNovamente()
         }else if (numeroAdivinhar > numero){
-            textViewAjuda.text ="O número que estou a pensar é maior"
+            textViewAjuda.text =getString(R.string.numero_maior)
         }else{
-            textViewAjuda.text ="O número que estou a pensar é menor"
+            textViewAjuda.text =getString(R.string.numero_menor)
         }
         tentativas++
         atualizaTentativas()
     }
     private fun perguntaNovamente(){
-        //colocar alert dialog se quer jogar novamente
+        val alertDialogBuilder = AlertDialog.Builder(this)
+
+        alertDialogBuilder.setTitle(R.string.acertou)
+        alertDialogBuilder.setMessage(getString(R.string.jogar_novamente))
+
+        alertDialogBuilder.setPositiveButton(
+                android.R.string.ok,
+                DialogInterface.OnClickListener { dialog, which -> novoJogo() }
+        )
+        alertDialogBuilder.setNegativeButton(
+                android.R.string.cancel,
+                DialogInterface.OnClickListener { dialog, which -> finish() }
+        )
+        alertDialogBuilder.show()
     }
 
 }

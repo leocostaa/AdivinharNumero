@@ -7,4 +7,8 @@
     <string name="tentativa">Tentativas:</string>
     <string name="numero_invalido">Introduza um número (entre 1 e 10)</string>
     <string name="numero_1e10">O número deve estar entre 1 e 10</string>
+    <string name="acertou">Parabéns, acertou!!</string>
+    <string name="jogar_novamente">Pretende jogar novamente?</string>
+    <string name="numero_maior">O número que estou a pensar é maior</string>
+    <string name="numero_menor">O número que estou a pensar é menor</string>
 </resources>
